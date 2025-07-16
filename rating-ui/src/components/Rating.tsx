@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Star from "./Star";
 
 interface RatingProps {
   heading?: string;
@@ -15,22 +16,22 @@ const Rating = ({
 
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-
+  
   return (
     <div className="rating-container">
       <h2>{heading}</h2>
       <div className="stars">
         {stars.map((star) => (
-          <span
-            className={"star"}
-            style={{ color: star <= (hover || rating) ? color : "lightgray" }}
-            onClick={() => setRating(star)}
-            onMouseEnter={() => setHover(star)}
-            onMouseLeave={() => setHover(0)}
+          <Star
             key={star}
-          >
-            {"\u2605"} {/* Unicode star character */}
-          </span>
+            star={star}
+            rating={rating}
+            ratingClick={setRating}
+            hover={hover}
+            color={color}
+            hoverEnter={setHover}
+            hoverLeave={() => setHover(0)}
+          />
         ))}
       </div>
       <div className="feedback">

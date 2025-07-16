@@ -1,19 +1,29 @@
 import { useState } from "react";
 
-const Rating = () => {
+interface RatingProps {
+  heading?: string;
+  color?: string;
+  feedbackMessages?: string[];
+}
+
+const Rating = ({
+  heading = "Rate your experience",
+  color = "gold",
+  feedbackMessages = ["Poor", "Fair", "Good", "Very Good", "Excellent"],
+}: RatingProps) => {
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
-  const feedbackMessages = ["Poor", "Fair", "Good", "Very Good", "Excellent"];
 
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
 
   return (
     <div className="rating-container">
-      <h2>Rate Your Experience</h2>
+      <h2>{heading}</h2>
       <div className="stars">
         {stars.map((star) => (
           <span
-            className={`star ${star <= (hover || rating) ? "active" : ""}`}
+            className={"star"}
+            style={{ color: star <= (hover || rating) ? color : "lightgray" }}
             onClick={() => setRating(star)}
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(0)}

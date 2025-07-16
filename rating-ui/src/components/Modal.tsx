@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -5,7 +7,7 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, rating }: ModalProps) => {
-  if(!isOpen) return null;
+  if (!isOpen) return null;
   return (
     <div className="modal-overlay">
       <div className="modal">
@@ -14,9 +16,9 @@ const Modal = ({ isOpen, onClose, rating }: ModalProps) => {
           Your rating of {rating} star{rating > 1 ? "s" : ""} has been
           submitted.
         </p>
-        <button className="close-btn" onClick={onClose}>
+        <Button className="close-btn" onClick={onClose}>
           Close
-        </button>
+        </Button>
       </div>
     </div>
   );

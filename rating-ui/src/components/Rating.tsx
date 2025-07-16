@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Star from "./Star";
 import Modal from "./Modal";
+import Button from "./Button";
 
 interface RatingProps {
   heading?: string;
@@ -55,13 +56,13 @@ const Rating = ({
           </p>
         )}
       </div>
-      <button
+      <Button
         className="submit-btn"
         onClick={handleSubmit}
         disabled={rating === 0}
       >
         Submit Rating
-      </button>
+      </Button>
       <Modal isOpen={submitted} onClose={closeModal} rating={rating} />
     </div>
   );

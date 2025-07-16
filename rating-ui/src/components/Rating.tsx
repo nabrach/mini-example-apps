@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Star from "./Star";
+import Modal from "./Modal";
 
 interface RatingProps {
   heading?: string;
@@ -61,20 +62,7 @@ const Rating = ({
       >
         Submit Rating
       </button>
-      {submitted && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Thank You</h2>
-            <p>
-              Your rating of {rating} star{rating > 1 ? "s" : ""} has been
-              submitted.
-            </p>
-            <button className="close-btn" onClick={closeModal}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      <Modal isOpen={submitted} onClose={closeModal} rating={rating} />
     </div>
   );
 };

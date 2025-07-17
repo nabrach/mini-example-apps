@@ -1,7 +1,9 @@
 {
   "files": [],
+  "types": ["vitest/globals", "@testing-library/jest-dom"],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
+    
   ]
 }

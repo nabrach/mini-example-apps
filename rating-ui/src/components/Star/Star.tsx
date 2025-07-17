@@ -19,6 +19,7 @@ const Star = ({
 }: StarProps) => {
   return (
     <span
+      data-testid="star"
       className="star"
       style={{ color: star <= (hover || rating) ? color : "lightgray" }}
       onClick={() => ratingClick(star)}

@@ -1,10 +1,26 @@
 import { useState } from "react";
 
 const NoteForm = () => {
-  const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("Medium");
-  const [category, setCategory] = useState("Work");
-  const [description, setDescription] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    priority: "Medium",
+    category: "Work",
+    description: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const { title, priority, category, description } = formData;
 
   return (
     <form className="mb-6">
@@ -16,7 +32,8 @@ const NoteForm = () => {
           type="text"
           className="w-full p-2 border rounded-lg"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleChange}
+          name="title"
         />
       </div>
       <div className="mb-4">
@@ -26,7 +43,10 @@ const NoteForm = () => {
         <select
           className="w-full p-2 border rounded-lg"
           value={priority}
-          onChange={(e) => setPriority(e.target.value)}
+          onChange={(e) =>
+            setFormData({ ...formData, priority: e.target.value })
+          }
+          name="priority"
         >
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
@@ -40,7 +60,10 @@ const NoteForm = () => {
         <select
           className="w-full p-2 border rounded-lg"
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) =>
+            setFormData({ ...formData, category: e.target.value })
+          }
+          name="category"
         >
           <option value="Work">Work</option>
           <option value="Personal">Personal</option>
@@ -55,7 +78,8 @@ const NoteForm = () => {
           className="w-full p-2 border rounded-lg"
           rows={4}
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={handleChange}
+          name="description"
         ></textarea>
       </div>
       <button

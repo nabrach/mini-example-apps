@@ -1,6 +1,19 @@
 import { useState } from "react";
 
-const NoteForm = () => {
+export interface Note {
+  id: number;
+  title: string;
+  priority: string;
+  category: string;
+  description: string;
+}
+
+export interface NoteFormProps {
+  notes: Note[];
+  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+}
+
+const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
   const [formData, setFormData] = useState({
     title: "",
     priority: "Medium",
@@ -20,10 +33,34 @@ const NoteForm = () => {
     }));
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.title || !formData.description) {
+      alert("Title and Description are required");
+      return;
+    }
+    // create a new note object
+    const newNote = {
+      ...formData,
+      id: Date.now(), // simple unique ID based on timestamp
+    };
+
+    // update the notes state
+    setNotes([...notes, newNote]);
+
+    // reset the form
+    setFormData({
+      title: "",
+      priority: "Medium",
+      category: "Work",
+      description: "",
+    });
+  };
+
   const { title, priority, category, description } = formData;
 
   return (
-    <form className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-4">
         <label htmlFor="title" className="block semi-bold">
           Title
@@ -85,23 +122,21 @@ const NoteForm = () => {
       <button
         type="submit"
         className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600"
-        onClick={(e) => {
-          e.preventDefault();
-          // Handle form submission logic here
-          console.log({ title, priority, category, description });
-        }}
+        onClick={handleSubmit}
       >
         Add Note
       </button>
       <button
         type="reset"
         className="w-full bg-gray-300 text-black p-2 rounded-lg mt-2 hover:bg-gray-400"
-        onClick={() => {
-          setTitle("");
-          setPriority("Medium");
-          setCategory("Work");
-          setDescription("");
-        }}
+        onClick={() =>
+          setFormData({
+            title: "",
+            priority: "Medium",
+            category: "Work",
+            description: "",
+          })
+        }
       >
         Reset
       </button>

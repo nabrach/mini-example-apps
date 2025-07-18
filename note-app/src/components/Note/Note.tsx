@@ -1,7 +1,7 @@
-import type { Note } from "../NoteForm/NoteForm";
+import type { NoteProps } from "../NoteForm/NoteForm";
 
 interface NoteProps {
-  note: Note;
+  note: NoteProps;
   deleteNote: (id: number) => void;
 }
 
@@ -33,4 +33,4 @@ const Note = ({ note, deleteNote }: NoteProps) => {
   );
 };
 
-export default Note;
+export default NoteProps;

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import NoteForm, { type Note } from "./components/NoteForm/NoteForm";
+import NoteForm, { type NoteProps } from "./components/NoteForm/NoteForm";
 import NoteList from "./components/NoteList/NoteList";
 
 const App = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<NoteProps[]>([]);
   const deleteNote = (id: number) => {
     const confirmation = window.confirm("Are you sure you want to delete this note?");
     if (!confirmation) return;

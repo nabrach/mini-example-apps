@@ -1,69 +1,28 @@
-# React + TypeScript + Vite
+# Priority Note taking app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Just a simple note taking app where the user can:
 
-Currently, two official plugins are available:
+1. Write a title
+2. Assign priority
+3. Select a category
+4. Write a description
+5. Add a note (create a list)
+6. Delete a note
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This demonstrates use of forms, controlled inputs, hooks, and conditional rendering.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Screenshots
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+<table>
+  <tr>
+    <td align="center"><img src="./src/assets/noNotes.png" width="300"/><br>No Notes</td>
+    <td align="center"><img src="./src/assets/showForm.png" width="300"/><br>Show Form</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="./src/assets/firstNote.png" width="300"/><br>First Note</td>
+    <td align="center"><img src="./src/assets/differentPriorities.png" width="300"/><br>Different Priorities</td>
+    <td align="center"><img src="./src/assets/deletingNote.png" width="300"/><br>Deleting Note</td>
+  </tr>
+</table>

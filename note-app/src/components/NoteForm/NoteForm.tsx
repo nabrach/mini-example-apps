@@ -68,7 +68,7 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
     <>
       <button
         onClick={() => setIsFormVisible(!isFormVisible)}
-        className="mb-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+        className="mb-4 bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600"
       >
         {isFormVisible ? "Hide Form" : "Show Form"}
       </button>

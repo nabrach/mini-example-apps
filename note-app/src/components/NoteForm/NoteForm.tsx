@@ -21,6 +21,8 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
     description: "",
   });
 
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -60,87 +62,105 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
   const { title, priority, category, description } = formData;
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6">
-      <div className="mb-4">
-        <label htmlFor="title" className="block semi-bold">
-          Title
-        </label>
-        <input
-          type="text"
-          className="w-full p-2 border rounded-lg"
-          value={title}
-          onChange={handleChange}
-          name="title"
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="priority" className="block semi-bold">
-          Priority
-        </label>
-        <select
-          className="w-full p-2 border rounded-lg"
-          value={priority}
-          onChange={(e) =>
-            setFormData({ ...formData, priority: e.target.value })
-          }
-          name="priority"
-        >
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label htmlFor="category" className="block semi-bold">
-          Category
-        </label>
-        <select
-          className="w-full p-2 border rounded-lg"
-          value={category}
-          onChange={(e) =>
-            setFormData({ ...formData, category: e.target.value })
-          }
-          name="category"
-        >
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label htmlFor="description" className="block semi-bold">
-          Description
-        </label>
-        <textarea
-          className="w-full p-2 border rounded-lg"
-          rows={4}
-          value={description}
-          onChange={handleChange}
-          name="description"
-        ></textarea>
-      </div>
+    <>
       <button
-        type="submit"
-        className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600"
-        onClick={handleSubmit}
+        onClick={() => setIsFormVisible(!isFormVisible)}
+        className="mb-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
       >
-        Add Note
+        {isFormVisible ? "Hide Form" : "Show Form"}
       </button>
-      <button
-        type="reset"
-        className="w-full bg-gray-300 text-black p-2 rounded-lg mt-2 hover:bg-gray-400"
-        onClick={() =>
-          setFormData({
-            title: "",
-            priority: "Medium",
-            category: "Work",
-            description: "",
-          })
-        }
-      >
-        Reset
-      </button>
-    </form>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit} className="mb-6">
+          <div className="mb-4">
+            <label htmlFor="title" className="block semi-bold">
+              Title
+            </label>
+            <input
+              type="text"
+              className="w-full p-2 border rounded-lg"
+              value={title}
+              onChange={handleChange}
+              name="title"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="priority" className="block semi-bold">
+              Priority
+            </label>
+            <select
+              className="w-full p-2 border rounded-lg"
+              value={priority}
+              onChange={(e) =>
+                setFormData({ ...formData, priority: e.target.value })
+              }
+              name="priority"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="category" className="block semi-bold">
+              Category
+            </label>
+            <select
+              className="w-full p-2 border rounded-lg"
+              value={category}
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+              name="category"
+            >
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="description" className="block semi-bold">
+              Description
+            </label>
+            <textarea
+              className="w-full p-2 border rounded-lg"
+              rows={4}
+              value={description}
+              onChange={handleChange}
+              name="description"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600"
+            onClick={handleSubmit}
+          >
+            Add Note
+          </button>
+          <button
+            type="reset"
+            className="w-full bg-gray-300 text-black p-2 rounded-lg mt-2 hover:bg-gray-400"
+            onClick={() =>
+              setFormData({
+                title: "",
+                priority: "Medium",
+                category: "Work",
+                description: "",
+              })
+            }
+          >
+            Reset
+          </button>
+        </form>
+      )}
+      {notes.length === 0 && (
+        <p className="text-gray-500">No notes available</p>
+      )}
+      {notes.length > 0 && (
+        <p className="text-gray-500 mb-4">
+          {notes.length} {notes.length === 1 ? "note" : "notes"} available
+        </p>
+      )}
+    </>
   );
 };
 

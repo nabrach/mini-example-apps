@@ -1,6 +1,11 @@
 import type { Note } from "../NoteForm/NoteForm";
 
-const NoteList = ({ notes }: { notes: Note[] }) => {
+interface NoteListProps {
+  notes: Note[];
+  deleteNote: (id: number) => void;
+}
+
+const NoteList = ({ notes, deleteNote }: NoteListProps) => {
   return (
     <div className="mt-6">
       <h3 className="text-xl font-semibold mb-4">Notes List</h3>
@@ -14,6 +19,12 @@ const NoteList = ({ notes }: { notes: Note[] }) => {
               <p className="text-sm text-gray-600">Priority: {note.priority}</p>
               <p className="text-sm text-gray-600">Category: {note.category}</p>
               <p className="mt-2">{note.description}</p>
+              <button
+                className="mt-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+                onClick={() => deleteNote(note.id)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

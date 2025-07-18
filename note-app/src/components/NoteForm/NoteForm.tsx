@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TextInput from "../Inputs/TextInput";
 import SelectInput from "../Inputs/SelectInput";
+import TextAreaInput from "../Inputs/TextAreaInput";
 
 export interface Note {
   id: number;
@@ -106,18 +107,13 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
               { value: "Other", label: "Other" },
             ]}
           />
-          <div className="mb-4">
-            <label htmlFor="description" className="block semi-bold">
-              Description
-            </label>
-            <textarea
-              className="w-full p-2 border rounded-lg"
-              rows={4}
-              value={description}
-              onChange={handleChange}
-              name="description"
-            ></textarea>
-          </div>
+          <TextAreaInput
+            label="Description"
+            name="description"
+            value={description}
+            onChange={handleChange}
+            required
+          />
           <button
             type="submit"
             className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600"

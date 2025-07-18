@@ -14,7 +14,18 @@ const NoteList = ({ notes, deleteNote }: NoteListProps) => {
       ) : (
         <ul className="space-y-4">
           {notes.map((note) => (
-            <li key={note.id} className="p-4 bg-white rounded shadow">
+            <li
+              key={note.id}
+              className="p-4 bg-white rounded shadow border-l-4"
+              style={{
+                borderLeftColor:
+                  note.priority === "High"
+                    ? "red"
+                    : note.priority === "Medium"
+                    ? "orange"
+                    : "green",
+              }}
+            >
               <h4 className="text-lg font-bold">{note.title}</h4>
               <p className="text-sm text-gray-600">Priority: {note.priority}</p>
               <p className="text-sm text-gray-600">Category: {note.category}</p>

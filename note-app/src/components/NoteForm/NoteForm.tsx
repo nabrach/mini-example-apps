@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TextInput from "../Inputs/TextInput";
+import SelectInput from "../Inputs/SelectInput";
 
 export interface Note {
   id: number;
@@ -79,23 +80,19 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
             onChange={handleChange}
             required
           />
-          <div className="mb-4">
-            <label htmlFor="priority" className="block semi-bold">
-              Priority
-            </label>
-            <select
-              className="w-full p-2 border rounded-lg"
-              value={priority}
-              onChange={(e) =>
-                setFormData({ ...formData, priority: e.target.value })
-              }
-              name="priority"
-            >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-          </div>
+          <SelectInput
+            label="Priority"
+            name="priority"
+            value={priority}
+            onChange={(e) =>
+              setFormData({ ...formData, priority: e.target.value })
+            }
+            options={[
+              { value: "Low", label: "Low" },
+              { value: "Medium", label: "Medium" },
+              { value: "High", label: "High" },
+            ]}
+          />
           <div className="mb-4">
             <label htmlFor="category" className="block semi-bold">
               Category

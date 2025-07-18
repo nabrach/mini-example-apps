@@ -93,23 +93,19 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
               { value: "High", label: "High" },
             ]}
           />
-          <div className="mb-4">
-            <label htmlFor="category" className="block semi-bold">
-              Category
-            </label>
-            <select
-              className="w-full p-2 border rounded-lg"
-              value={category}
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-              name="category"
-            >
-              <option value="Work">Work</option>
-              <option value="Personal">Personal</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
+          <SelectInput
+            label="Category"
+            name="category"
+            value={category}
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
+            options={[
+              { value: "Work", label: "Work" },
+              { value: "Personal", label: "Personal" },
+              { value: "Other", label: "Other" },
+            ]}
+          />
           <div className="mb-4">
             <label htmlFor="description" className="block semi-bold">
               Description

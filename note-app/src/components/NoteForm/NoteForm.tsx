@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TextInput from "../Inputs/TextInput";
 
 export interface Note {
   id: number;
@@ -71,18 +72,13 @@ const NoteForm = ({ notes, setNotes }: NoteFormProps) => {
       </button>
       {isFormVisible && (
         <form onSubmit={handleSubmit} className="mb-6">
-          <div className="mb-4">
-            <label htmlFor="title" className="block semi-bold">
-              Title
-            </label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded-lg"
-              value={title}
-              onChange={handleChange}
-              name="title"
-            />
-          </div>
+          <TextInput
+            label="Title"
+            name="title"
+            value={title}
+            onChange={handleChange}
+            required
+          />
           <div className="mb-4">
             <label htmlFor="priority" className="block semi-bold">
               Priority

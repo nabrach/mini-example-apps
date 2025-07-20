@@ -1,8 +1,7 @@
-import Note from "../Note/Note";
-import type { Note as NoteType } from "../NoteForm/NoteForm";
+import Note, { type NoteProps } from "../Note/Note";
 
 interface NoteListProps {
-  notes: NoteType[];
+  notes: NoteProps[];
   deleteNote: (id: number) => void;
 }
 
@@ -15,7 +14,7 @@ const NoteList = ({ notes, deleteNote }: NoteListProps) => {
       ) : (
         <ul className="space-y-4">
           {notes.map((note) => (
-            <Note key={note.id} note={note} deleteNote={deleteNote} />
+            <Note key={note.id} {...note} deleteNote={deleteNote} />
           ))}
         </ul>
       )}

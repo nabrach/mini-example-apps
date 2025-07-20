@@ -1,31 +1,51 @@
-import type { NoteProps } from "../NoteForm/NoteForm";
-
-interface NoteProps {
-  note: NoteProps;
-  deleteNote: (id: number) => void;
+export interface NoteProps {
+  id: number;
+  title: string;
+  priority: string;
+  category: string;
+  description: string;
 }
 
-const Note = ({ note, deleteNote }: NoteProps) => {
+export type Note = {
+  id: number;
+  title: string;
+  priority: string;
+  category: string;
+  description: string;
+};
+
+export interface NoteProps extends Note {
+  deleteNote?: (id: number) => void;
+}
+
+const Note = ({
+  id,
+  title,
+  priority,
+  category,
+  description,
+  deleteNote,
+}: NoteProps) => {
   return (
     <li
-      key={note.id}
+      key={id}
       className="p-4 bg-white rounded shadow border-l-4"
       style={{
         borderLeftColor:
-          note.priority === "High"
+          priority === "High"
             ? "red"
-            : note.priority === "Medium"
+            : priority === "Medium"
             ? "orange"
             : "green",
       }}
     >
-      <h4 className="text-lg font-bold">{note.title}</h4>
-      <p className="text-sm text-gray-600">Priority: {note.priority}</p>
-      <p className="text-sm text-gray-600">Category: {note.category}</p>
-      <p className="mt-2">{note.description}</p>
+      <h4 className="text-lg font-bold">{title}</h4>
+      <p className="text-sm text-gray-600">Priority: {priority}</p>
+      <p className="text-sm text-gray-600">Category: {category}</p>
+      <p className="mt-2">{description}</p>
       <button
         className="mt-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
-        onClick={() => deleteNote(note.id)}
+        onClick={() => deleteNote?.(id)}
       >
         Delete
       </button>
@@ -33,4 +53,4 @@ const Note = ({ note, deleteNote }: NoteProps) => {
   );
 };
 
-export default NoteProps;
+export default Note;

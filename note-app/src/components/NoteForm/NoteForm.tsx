@@ -2,18 +2,11 @@ import { useState } from "react";
 import TextInput from "../Inputs/TextInput";
 import SelectInput from "../Inputs/SelectInput";
 import TextAreaInput from "../Inputs/TextAreaInput";
-
-export interface Note {
-  id: number;
-  title: string;
-  priority: string;
-  category: string;
-  description: string;
-}
+import type { NoteProps } from "../Note/Note";
 
 export interface NoteFormProps {
-  notes: Note[];
-  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+  notes: NoteProps[];
+  setNotes: React.Dispatch<React.SetStateAction<NoteProps[]>>;
 }
 
 const NoteForm = ({ notes, setNotes }: NoteFormProps) => {

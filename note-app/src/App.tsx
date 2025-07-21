@@ -1,11 +1,22 @@
-import { useState } from "react";
-import NoteForm, { type NoteProps } from "./components/NoteForm/NoteForm";
+import { useEffect, useState } from "react";
+import NoteForm from "./components/NoteForm/NoteForm";
 import NoteList from "./components/NoteList/NoteList";
+import type { NoteProps } from "./components/Note/Note";
 
 const App = () => {
-  const [notes, setNotes] = useState<NoteProps[]>([]);
+  const [notes, setNotes] = useState<NoteProps[]>(() => {
+    const notes = JSON.parse(localStorage.getItem("notes") || "[]");
+    return notes ? notes : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
+
   const deleteNote = (id: number) => {
-    const confirmation = window.confirm("Are you sure you want to delete this note?");
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this note?"
+    );
     if (!confirmation) return;
     setNotes(notes.filter((note) => note.id !== id));
   };
